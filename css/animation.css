@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+
+  animation-name: changeBgColor, spin;
+  animation-duration: 3000ms, 5000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+
+  /* Второй вариант как расположить квадрат по центру, не используя флекс на боди */
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+@keyframes changeBgColor {
+  0% {
+    background-color: red;
+  }
+
+  50% {
+    background-color: orange;
+  }
+
+  100% {
+    background-color: green;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

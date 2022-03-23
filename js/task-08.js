@@ -6,52 +6,36 @@ const span = document.createElement('span');
 p.appendChild(span);
 divEl.appendChild(p);
 
-
-// function nodeChildCount(selector, deep) {
-//     const element= document.querySelector(`${selector}`);
-//     let  child = 0;
-//     const children = element.children;
-//     checkingForChildren(children);
-    
-//     function checkingForChildren(arr){
-//         if (arr === []) {
-//             child = child+0;
-//             return 
-//         } else {
-//             for (let i = 0; i < arr.length; i += 1) {
-//                 child = child + 1;
-//                 const childHasAChild = arr[i].children;
-//                 console.log(child)
-//                 checkingForChildren(childHasAChild);
-//             }
-//         }
-//     }
-//     console.log(child)    
-// }
-
-// nodeChildCount('div');
-
 function nodeChildCount(selector, deep) {
-    const a = deep;
     const element= document.querySelector(`${selector}`);
-    let  child = 0;
+    let child = 0;
+    
     const children = element.children;
     checkingForChildren(children);
     
     function checkingForChildren(arr){
         if (arr === []) {
-            child = child+0;
+            child = child + 0;
             return 
-        } else if(a===1){
+        } else {
             for (let i = 0; i < arr.length; i += 1) {
                 child = child + 1;
                 const childHasAChild = arr[i].children;
+                if (deep === undefined) {
+                    checkingForChildren(childHasAChild);
+                } else {
+                    for (let i = 2; i <= deep; i += 1){
+                        checkingForChildren(childHasAChild);
+                        return
+                    }
+                }
                 
-                return checkingForChildren(childHasAChild);
+                
+                
             }
-        }else {return}
-    }
+            }
+        }
     console.log(child)    
 }
 
-nodeChildCount('div',1);
+nodeChildCount('div',7);
